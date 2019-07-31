@@ -1,0 +1,112 @@
+深浅拷贝
+继承
+事件循环
+原型，对象，构造函数，new 
+ES6 语法 
+
+react中修改state 的方法如下：
+    JSON.parse(JSON.stringfy(state))
+    Object.assign() 
+    immutablejs 
+    Object.freeze()  冻结一个对象 让此对象变的不可 增、删、改、查
+
+redux的三大原则：
+    1、只读
+    2、纯函数   必须是同步的 
+    3、单一数据源
+
+1、AMD,CMD,ES6都是异步加载模块
+2、CommonJS是同步加载模块
+3、AMD要指定入口js文件  
+4、node环境中默认有require环境，允许你直接使用
+
+1、AMD -> require
+2、CMD -> SeaJS  
+3、CommonJS -> node.js  
+4、ES6  -> Module
+
+// js模块化讲解：
+            // js模块化，就是将程序按特定功能封装起来，并暴露，且在其他js文件内引入
+            // 优点：
+                // 1、更好的体现了js的模块化思想（作用域思想）
+                // 2、对程序进行了深度封装
+                // 3、解决了全局变量冲突
+                // 4、函数重名冲突,
+                // 5、提高代码的复用性，
+                // 6、减少了内存占用
+                // 7、按需加载
+                // 8、解耦
+                // 9、提高开发开发效率 
+                // 10、降低维护成本，易于维护，迭代  
+
+            // 框架，就是通过模块化封装  暴露 引入的   
+
+            // js模块化分为4中方式：
+            <!-- 1、CMD  -->
+                    // CMD是一种模块化产出的概念，体现者是SeaJS, 也是通过require进行加载
+                    // SeaJS是阿里的 玉伯  整出来的 
+                    // 都是通过define函数进行加载的  
+                    // 按需加载
+                    // 不进行依赖前置
+                    // 就近原则
+                <!-- 定义模块 -->
+                    define(function(require,exports,module){
+                        var a = require('./a');
+                        var s1 = a.add_uum;
+                        var s2 = a.reduce_num;
+                        module.exports = {
+                            a1:s1,
+                            a2:s2
+                        };
+                    })
+                <!-- 引入模块 -->
+                        seajs.use(['a','b'],function(a,b){
+                            a.n1();
+                            a.n4();
+                            b.n2();
+                        }) 
+            <!-- 2、AMD  :其实是CommonJS的中转版本，可以实现同步加载 -->
+                    // 是一种js模块化概念的产出，最好的实践者或者代表就是 requireJS 
+                    // requireJS 体现了AMD规范，按需加载 ，提前加载 ，异步加载 
+                    // 都是通过define函数进行定义模块 
+                    // 依赖前置
+                    // 全部加载
+                <!-- 定义模块如下 -->
+                    define('loop',['swiper'],function(s){
+                        // 具体的轮播图操作
+                        // var a = require('./a.js');
+                        // var b = require('./b.js');
+                        <!-- 暴露模块 -->
+                        return {
+                            a1:a,
+                            b1:b
+                        }
+                    });
+                <!-- 引入模块 -->
+                    require(['./a','./b'],function(a,b){
+                        a.a();
+                        b.b();
+                    });
+
+            <!-- 3、CommonJS  -->
+                    // 是js模块化概念的产出，最好的实践者是Node.js,同步加载模块
+                    // 适用于服务端，不能使用在浏览器端
+                    // 通过require加载文件
+                    <!-- 暴露： -->
+                        1、module.exports = {} 
+                        2、exports.xxx = xxx;
+                    <!-- 引入 -->
+                        var a = require('./a');
+                        var b = require('./b');
+
+            <!-- 4、ES6 module -->
+                    // 1、
+                        // 默认暴露：export default 变量
+                        // 引入：import xxx from 'xxx;
+                    // 2、
+                        // 直接暴露：export 变量 
+                        // import { xxxa,xxxb,xxxc } from 'xxx';
+                    
+                    // 共同的引入：import * as xxx from 'xxx';
+
+
